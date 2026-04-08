@@ -8,7 +8,12 @@ const express = require('express')
 const app = express()
 const port = 5000
 
-app.use(cors());
+const cors = require("cors");
+
+app.use(cors({
+  origin: "https://notenest-livid.vercel.app",
+  credentials: true
+}));
 app.use(express.json());
 // Avaliable Routes
 app.use('/api/auth', require('./routes/auth'));
