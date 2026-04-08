@@ -3,23 +3,29 @@ import NoteContext from "./NoteContext";
 
 const NoteState = (props) => {
     const host = "http://localhost:5000";
-    const notesInitial = []
-    const [notes, setNotes] = useState(notesInitial)
+    const [notes, setNotes] = useState([])
 
     // Get Note 
     const getNotes = async () => {
-        // Add API call 
-        const response = await fetch(`${host}/api/notes/fetchallnotes`, {
-            method: 'GET',
-            headers: {
-                'content-type': 'application/json',
-                'auth-token': localStorage.getItem('token')
-            }
-        });
-        const json = await response.json();
-        setNotes(json)
+    const response = await fetch(`${host}/api/notes/fetchallnotes`, {
+        method: 'GET',
+        headers: {
+            'content-type': 'application/json',
+            'auth-token': localStorage.getItem('token')
+        }
+    });
 
+    const json = await response.json();
+    console.log("API RESPONSE:", json); // 👈 IMPORTANT
+
+    // ✅ FIX: ensure it's always an array
+    if (Array.isArray(json)) {
+        setNotes(json);
+    } else {
+        console.error("Unexpected response:", json);
+        setNotes([]); // fallback to empty array
     }
+}
 
     // Add Note 
     const addNote = async (title, description, tag) => {

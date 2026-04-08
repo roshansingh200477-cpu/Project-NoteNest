@@ -1,5 +1,6 @@
-const mongoose = require('mongoose'); 
-const mongoUrl = "mongodb+srv://roshansingh_Mdb:roshansingh_MDB_123@cluster0.ztms8bu.mongodb.net/inotebook"
+const mongoose = require('mongoose');
+
+const mongoUrl = process.env.MONGO_URI;
 
 const connectToMongo = () => {
   mongoose.connect(mongoUrl)

@@ -22,7 +22,7 @@ const Navbar = () => {
   <nav className="navbar navbar-expand-lg navbar-dark navbar-premium fixed-top">
       <div className="container">
         <Link className="navbar-brand brand-glow" to="/">
-          iNotebook
+          NoteNest
         </Link>
 
         <button
@@ -39,6 +39,11 @@ const Navbar = () => {
             <li className="nav-item">
               <Link className={`nav-link ${location.pathname === "/"?"active":""}`} to="/">
                 Home
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link className={`nav-link ${location.pathname === "/"?"active":""}`} to="/NotesDisplay">
+                Notes
               </Link>
             </li>
             <li className="nav-item">

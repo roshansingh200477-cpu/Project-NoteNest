@@ -1,6 +1,6 @@
 import Notes from './Notes';
 
-const Home = (props) => {
+const  NotesDisplay = (props) => {
 
   return (
     <div>
@@ -11,4 +11,4 @@ const Home = (props) => {
   )
 }
 
-export default Home
+export default NotesDisplay

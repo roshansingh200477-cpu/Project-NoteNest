@@ -2,6 +2,7 @@ import './App.css';
 import Navbar from './components/Navbar.js';
 import Home from './components/Home.js';
 import About from './components/About.js';
+import NotesDisplay from './components/NotesDisplay.js';
 import NoteState from './context/notes/NoteState.js';
 import {
   Route,
@@ -37,6 +38,7 @@ const App = () => {
               <Route path="/About" element={<About />} />
               <Route path="/Login" element={<Login showAlert={showAlert}/>} />
               <Route path="/Signup" element={<Signup showAlert={showAlert}/>} />
+              <Route path="/NotesDisplay" element={<NotesDisplay showAlert={showAlert}/>} />
             </Routes>
           </div>
         </BrowserRouter>
