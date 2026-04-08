@@ -25,6 +25,27 @@ const Home = () => {
     { icon: '🔒', title: 'Yours Forever', desc: 'Your notes, your vault. Private by default.' },
   ];
 
+  const bgIcons = [
+    { e: '📝', top: '3%',  left: '1%',   size: '5.5rem', opacity: 0.10, delay: '0s',   duration: '7s'  },
+    { e: '📌', top: '6%',  right: '2%',  size: '4.5rem', opacity: 0.09, delay: '1s',   duration: '6s'  },
+    { e: '🗂️', top: '20%', left: '89%',  size: '6.5rem', opacity: 0.08, delay: '0.5s', duration: '9s'  },
+    { e: '✏️', top: '28%', left: '1%',   size: '4rem',   opacity: 0.10, delay: '2s',   duration: '5.5s'},
+    { e: '💡', top: '40%', right: '1%',  size: '5.5rem', opacity: 0.09, delay: '1.5s', duration: '8s'  },
+    { e: '🔖', top: '50%', left: '2%',   size: '3.5rem', opacity: 0.10, delay: '0.8s', duration: '7.5s'},
+    { e: '🗒️', top: '55%', right: '2%',  size: '6rem',   opacity: 0.08, delay: '2.5s', duration: '6.5s'},
+    { e: '🏷️', top: '65%', left: '91%',  size: '4rem',   opacity: 0.09, delay: '1.2s', duration: '8.5s'},
+    { e: '📋', top: '70%', left: '1%',   size: '5rem',   opacity: 0.08, delay: '3s',   duration: '7s'  },
+    { e: '🔍', top: '78%', right: '3%',  size: '4.5rem', opacity: 0.09, delay: '0.3s', duration: '6s'  },
+    { e: '🧠', top: '86%', left: '4%',   size: '5rem',   opacity: 0.07, delay: '1.8s', duration: '9.5s'},
+    { e: '📎', top: '91%', right: '5%',  size: '3.5rem', opacity: 0.09, delay: '2.2s', duration: '5s'  },
+    { e: '⭐', top: '13%', left: '44%',  size: '3rem',   opacity: 0.07, delay: '1s',   duration: '10s' },
+    { e: '📁', top: '58%', left: '46%',  size: '4rem',   opacity: 0.06, delay: '3.5s', duration: '8s'  },
+    { e: '🖊️', top: '33%', left: '20%',  size: '3.5rem', opacity: 0.07, delay: '4s',   duration: '7s'  },
+    { e: '📓', top: '44%', right: '20%', size: '4rem',   opacity: 0.07, delay: '2.8s', duration: '6s'  },
+    { e: '🗺️', top: '75%', left: '30%',  size: '3.5rem', opacity: 0.06, delay: '1.6s', duration: '11s' },
+    { e: '📐', top: '18%', left: '28%',  size: '3rem',   opacity: 0.06, delay: '3.2s', duration: '8s'  },
+  ];
+
   return (
     <>
       <style>{`
@@ -34,7 +55,6 @@ const Home = () => {
         .home-root { font-family: 'DM Sans', sans-serif; background-color: #fdf6ec; min-height: 100vh; overflow-x: hidden; position: relative; }
         .display-font { font-family: 'Playfair Display', serif; }
 
-        /* Blobs */
         .blob-1 {
           position: absolute; top: -80px; right: -80px;
           width: 380px; height: 380px;
@@ -50,14 +70,33 @@ const Home = () => {
           pointer-events: none;
         }
 
-        /* Grain */
         .grain-overlay {
           position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0;
           pointer-events: none; opacity: 0.45;
           background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
         }
 
-        /* Animations */
+        /* ── BIG FLOATING BG ICONS ── */
+        @keyframes floatDrift {
+          0%   { transform: translateY(0px) rotate(0deg); }
+          33%  { transform: translateY(-14px) rotate(3deg); }
+          66%  { transform: translateY(6px) rotate(-2deg); }
+          100% { transform: translateY(0px) rotate(0deg); }
+        }
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+        }
+        .bg-icon {
+          position: fixed;
+          pointer-events: none;
+          z-index: 1;
+          animation: floatDrift linear infinite, fadeIn 1.5s ease both;
+          user-select: none;
+          line-height: 1;
+          filter: blur(0.4px);
+        }
+
         @keyframes floatUp {
           0%   { opacity: 0; transform: translateY(28px) scale(0.85); }
           100% { opacity: 1; transform: translateY(0) scale(1); }
@@ -90,28 +129,13 @@ const Home = () => {
           animation: floatUp 0.55s cubic-bezier(.22,1,.36,1) both;
           transition: transform 0.2s ease;
         }
-        .icon-tile:hover {
-          animation: wiggle 0.5s ease-in-out;
-        }
+        .icon-tile:hover { animation: wiggle 0.5s ease-in-out; }
 
-        .hero-label {
-          animation: fadeSlide 0.7s ease both;
-          animation-delay: 300ms;
-        }
-        .hero-title {
-          animation: fadeSlide 0.7s ease both;
-          animation-delay: 400ms;
-        }
-        .hero-sub {
-          animation: fadeSlide 0.7s ease both;
-          animation-delay: 500ms;
-        }
-        .hero-btns {
-          animation: fadeSlide 0.7s ease both;
-          animation-delay: 600ms;
-        }
+        .hero-label { animation: fadeSlide 0.7s ease both; animation-delay: 300ms; }
+        .hero-title { animation: fadeSlide 0.7s ease both; animation-delay: 400ms; }
+        .hero-sub   { animation: fadeSlide 0.7s ease both; animation-delay: 500ms; }
+        .hero-btns  { animation: fadeSlide 0.7s ease both; animation-delay: 600ms; }
 
-        /* Buttons */
         .btn-cta {
           background-color: #FBBF24;
           color: #1c1917;
@@ -140,7 +164,6 @@ const Home = () => {
         }
         .btn-outline:hover { background-color: #1c1917; color: #FBBF24; }
 
-        /* Nav open app button */
         .btn-nav {
           background-color: #1c1917;
           color: #FBBF24;
@@ -167,7 +190,6 @@ const Home = () => {
         }
         .btn-nav-ghost:hover { background-color: #e7e5e4; color: #1c1917; }
 
-        /* Feature cards */
         .feature-card {
           background: #ffffff;
           border: 2px solid #1c1917;
@@ -181,7 +203,6 @@ const Home = () => {
           box-shadow: 6px 10px 0px 0px #1c1917;
         }
 
-        /* Marquee strip */
         .marquee-strip {
           background-color: #1c1917;
           padding: 18px 0;
@@ -203,7 +224,6 @@ const Home = () => {
           text-transform: uppercase;
         }
 
-        /* Footer */
         .home-footer {
           border-top: 1px solid #e7e5e4;
           padding: 36px 0;
@@ -217,7 +237,6 @@ const Home = () => {
         }
         .footer-email:hover { color: #b45309; }
 
-        /* Section relative */
         .z-content { position: relative; z-index: 5; }
       `}</style>
 
@@ -225,6 +244,25 @@ const Home = () => {
         <div className="grain-overlay" />
         <div className="blob-1" />
         <div className="blob-2" />
+
+        {/* ── BIG FLOATING BACKGROUND ICONS ── */}
+        {bgIcons.map((ic, i) => (
+          <div
+            key={i}
+            className="bg-icon"
+            style={{
+              top: ic.top,
+              left: ic.left,
+              right: ic.right,
+              fontSize: ic.size,
+              opacity: ic.opacity,
+              animationDelay: ic.delay,
+              animationDuration: `${ic.duration}, 1.5s`,
+            }}
+          >
+            {ic.e}
+          </div>
+        ))}
 
         {/* ── NAV ── */}
         <nav className="z-content" style={{ position: 'relative' }}>
@@ -236,7 +274,7 @@ const Home = () => {
               </div>
               <div className="d-flex align-items-center gap-2">
                 <button className="btn-nav-ghost" onClick={() => navigate('/About')}>About</button>
-                <button className="btn-nav" onClick={() => navigate('/NotesDisplay')}>Open App →</button>
+                <button className="btn-nav" onClick={() => navigate('/NotesDisplay')}>Open Notes →</button>
               </div>
             </div>
           </div>
