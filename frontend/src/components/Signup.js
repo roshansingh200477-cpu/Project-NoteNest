@@ -18,7 +18,7 @@ const Signup = (props) => {
     }
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_UR}/api/auth/createuser`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/auth/createuser`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

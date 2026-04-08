@@ -10,9 +10,14 @@ const port = process.env.PORT || 5000
 const cors = require("cors");
 
 app.use(cors({
-  origin: "https://notenest-livid.vercel.app",
+  origin: [
+    'https://notenest-livid.vercel.app',
+    'http://localhost:3000'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
+
 app.use(express.json());
 // Avaliable Routes
 app.use('/api/auth', require('./routes/auth'));
