@@ -9,6 +9,7 @@ const Signup = (props) => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
+    console.log("API URL:", process.env.REACT_APP_API_URL);
     e.preventDefault();
 
     if (credentials.password !== credentials.cpassword) {
