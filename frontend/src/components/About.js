@@ -368,7 +368,7 @@ const About = () => {
                 </span>
               </div>
               <div className="d-flex align-items-center gap-2">
-                <button className="btn-nav-ghost" onClick={() => navigate('/')}>🏠 Home</button>
+                <button className="btn-nav-ghost" onClick={() => navigate('/')}>🏠 Home</button> 
                 <button className="btn-nav" onClick={() => navigate('/NotesDisplay')}>📝 My Notes →</button>
               </div>
             </div>

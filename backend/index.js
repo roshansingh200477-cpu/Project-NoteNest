@@ -31,3 +31,7 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`iNotebook app listening on port ${port}`)
 })
+
+app.get('/ping', (req, res) => {
+  res.send('pong');
+});
